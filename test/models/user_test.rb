@@ -57,8 +57,18 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user not valid without password confirmation" do
-    @user2 = User.new(email: "george@email.com", password: 'foobar', password_confirmation: 'notfoobar')
-    assert_not @user2.valid?
+    @user.password_confirmation = "notfoobar"
+    assert_not @user.valid?
+  end
+
+  test "password should not be blank" do
+    @user.password = @user.password_confirmation = " " * 6
+    assert_not @user.valid?
+  end
+
+  test "password must be more than a minimum length" do
+    @user.password = @user.password_confirmation = "a" * 5
+    assert_not @user.valid?
   end
 
 end
