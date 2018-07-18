@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(email: "george@email.com", password: "georgeyporgey")
+    @user = User.new(email: "george@email.com", password: 'foobar', password_confirmation: 'foobar')
   end
 
   test "should be valid" do
@@ -11,11 +11,6 @@ class UserTest < ActiveSupport::TestCase
 
   test "should not be valid if email not present" do
     @user.email = nil
-    assert_not @user.valid?
-  end
-
-  test "should not be valid if no password" do
-    @user.password = nil
     assert_not @user.valid?
   end
 
@@ -37,16 +32,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "password should not be too short" do
-    @user.password = "pass"
-    assert_not @user.valid?
-  end
-
-  test "password should not be too long" do
-    @user.password = "p" * 16
-    assert_not @user.valid?
-  end
-
   test "email should not be too long" do
     @user.email = "a" * 100 + "@example.com"
     assert_not @user.valid?
@@ -54,8 +39,26 @@ class UserTest < ActiveSupport::TestCase
 
   test "email addresses should be unique" do
     duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
+  end
+
+  test "email addresses are saved as lower case" do
+    mixed_case_email_address = "Foo@ExaMpLe.coM"
+    @user.email = mixed_case_email_address
+    @user.save
+    assert_equal mixed_case_email_address.downcase, @user.reload.email
+  end
+
+  test "user not valid without password" do
+    @user.password = nil
+    assert_not @user.valid?
+  end
+
+  test "user not valid without password confirmation" do
+    @user2 = User.new(email: "george@email.com", password: 'foobar', password_confirmation: 'notfoobar')
+    assert_not @user2.valid?
   end
 
 end
