@@ -11,15 +11,7 @@
 
   <body>
     <div id="wrapper">
-      <header>
-
-        <%= link_to image_tag("personal_photo.jpg", alt: "Me"),
-          {controller: 'pages', action: 'home' },
-          {class: 'websiteLogo'} %>
-        <%= link_to 'READIT', {controller: 'pages', action: 'home'},
-          {class: 'websiteTitle'} %>
-
-      </header>
+      <%= render 'layouts/header' %>
 
       <nav id="horzNav">
         <p>
@@ -33,6 +25,9 @@
       <main id="content">
         <%= yield %>
       </main>
+
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div> <!-- END OF WRAPPER -->
   </body>
 </html>

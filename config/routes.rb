@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'pages/home'
-  get 'pages/about'
-  get 'pages/directions'
+  get 'sessions/new'
+  get '/home', to: 'pages#home'
+  get '/about', to: 'pages#about'
+  get '/directions', to: 'pages#directions'
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   resources :articles do
     resources :comments
   end

@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'bootstrap-sass', '3.3.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -57,7 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-
+  gem 'rails-controller-testing'
   gem 'dotenv-rails'
 end
 
