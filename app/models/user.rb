@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :articles, dependent: :delete_all
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP },
     length: {maximum: 100}, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_secure_password
 
   def self.digest(string)

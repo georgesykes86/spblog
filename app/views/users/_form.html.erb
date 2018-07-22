@@ -12,7 +12,7 @@
           <%= form.label :password_confirmation %>
           <%= form.password_field :password_confirmation, class: 'form-control' %>
 
-          <%= form.submit "Register", class: "btn btn-primary" %>
+          <%= form.submit yield(:button_text), class: "btn btn-primary" %>
       <% end %>
 
 
