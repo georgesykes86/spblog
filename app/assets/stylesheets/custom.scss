@@ -131,10 +131,17 @@ aside {
 }
 
 .gravatar_edit {
+  float: right;
   margin-top: 15px;
+  margin-bottom: 20px;
+  padding-right: 15px;
 }
 
 /* forms */
+
+.user_form {
+  align-items: center;
+}
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
