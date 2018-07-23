@@ -78,6 +78,6 @@ class UsersController < ApplicationController
       unless logged_in?
         flash[:danger] = "please log in"
         redirect_to login_url
-      end 
+      end
     end
 end
